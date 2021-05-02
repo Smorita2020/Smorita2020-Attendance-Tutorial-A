@@ -9,7 +9,11 @@
 
 .btn-users-show {
   margin-top: -10px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+}
+
+.btn2 {
+  background-color: #ccc;
 }
 
 /* ユーザー勤怠情報テーブル */
@@ -23,6 +27,10 @@
     vertical-align: middle;
     text-align: center;
   }
+}
+
+.btn-attendance {
+  background-color: #ccc;
 }
 
 /* 入力フォーム */
