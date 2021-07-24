@@ -48,7 +48,7 @@
                   <ul class="list-group">
                     <%= form_with model: user, url: user_path(user), local: true, method: :patch do |f| %>
                       <%= render 'shared/error_messages', object: @users %>
-                    
+                      
                       <%= f.label "名前", class: "label-#{yield(:class_text)}" %>
                       <%= f.text_field :name, class: "form-control" %>
                       
@@ -68,13 +68,13 @@
                       <%= f.password_field :password, class: "form-control" %>
                       
                       <%= f.label "基本勤務時間", class: "label-#{yield(:class_text)}" %>
-                      <%= f.time_select :basic_time, class: "form-control" %>
+                      <%= f.time_field :basic_time, class: "form-control" %>
                       
                       <%= f.label "指定勤務開始時間", class: "label-#{yield(:class_text)}" %>
-                      <%= f.time_select :designated_work_start_time, class: "form-control" %>
+                      <%= f.time_field :designated_work_start_time, class: "form-control" %>
                       
                       <%= f.label "指定勤務終了時間", class: "label-#{yield(:class_text)}" %>
-                      <%= f.time_select :designated_work_end_time, class: "form-control" %>
+                      <%= f.time_field :designated_work_end_time, class: "form-control" %>
                       
                       <%= f.submit "編集する", class: "btn btn-primary btn-block btn-signup btn-#{yield(:button_text)}" %>
                     <% end %>
