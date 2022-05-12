@@ -25,13 +25,25 @@
     </tr>
   </table>
 </div>
+
+<div class="notice-group">
+  <% if current_user.superior? %>
+    <div class="red-group">
+      <P>【所属長承認申請のお知らせ】</P>
+      <P>【勤怠変更申請のお知らせ】</P>
+      <P>【残業申請のお知らせ】</P>
+    </div>
+  <% end %>
+</div>
+
+
 <div class="btn-users-show">
   <%= link_to "勤怠を編集", attendances_edit_one_month_user_path(date: @first_day), class: "btn btn-primary" %>
   <%= link_to "csv出力", "#", class: "btn btn-primary" %><br>
   <%= link_to "勤怠修正ログ（承認済）", "#", class: "btn btn-primary" %>
 </div>
 <div>
-  <table class="table table-bordered table-condensed table-hover" id="table-attendances">
+  <table class="table table-bordered table-sm table-hover" id="table-attendances">
     <thead>
       <tr>
         <th rowspan = "3">残業申請</th>
@@ -111,7 +123,14 @@
         <td colspan="6"></td>
         <td colspan="1"><%= format("%.2f", @total_working_times.to_f) %></td>
         <td colspan="5"></td>
-        <td colspan="1">所属長承認</td>
+        <td colspan="1">所属長承認 未
+          <%= form_with model: @user do |f| %>
+          <%= f.select :superior, ["上長A", "上長B"], include_blank: "上長を選択して下さい" %>
+          <% end %>
+          <div class="form-group">
+            <%= link_to "申請", "#", class: "btn btn-primary btn-block" %>
+          </div>
+        </td>
       </tr>
     </tfoot>
   </table>

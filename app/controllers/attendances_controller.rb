@@ -43,6 +43,12 @@ class AttendancesController < ApplicationController
     redirect_to attendances_edit_one_month_user_url(date: params[:date])
   end
   
+  # 1ヶ月分の勤怠申請
+  def monthly_confirmation
+    @user = User.find(params[user_id])
+  end
+  
+  
   private
     # 1ヶ月分の勤怠情報を扱います。
     def attendances_params
