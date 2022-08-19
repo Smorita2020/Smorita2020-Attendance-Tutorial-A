@@ -1,0 +1,36 @@
+<div class="modal-dialog modal-lg modal-dialog-center">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button>
+      <h1 class="modal-title">【残業申請】</h1>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <table class="table table-bordered request-modal">
+           <thead>
+            <tr>
+              <th>日付</th>
+              <th>曜日</th>
+              <th>終了予定時間</th>
+              <th>翌日</th>
+              <th>業務内容</th>
+              <th>指示者確認㊞</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>8/1</td>
+              <td>水</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td><%= @user.name %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_basic_info, :update_basic_info]
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :edit_basic_info, :update_basic_info]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_basic_info, :update_basic_info, :request_overtime_info]
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :edit_basic_info, :update_basic_info, :request_overtime_info]
   before_action :correct_user, only: [:edit, :update]
-  before_action :admin_user, only: [:destroy, :edit_basic_info, :update_basic_info]
+  before_action :admin_user, only: [:destroy, :edit_basic_info, :update_basic_info, :request_overtime_info]
   before_action :admin_or_correct_user, only: [:show, :edit, :update]
   before_action :set_one_month, only: :show
 
@@ -64,6 +64,10 @@ class UsersController < ApplicationController
     end
     redirect_to users_url
   end
+  
+  # def request_overtime_info
+    # @user = User.find(params[:id])
+  # end
 
   private
 

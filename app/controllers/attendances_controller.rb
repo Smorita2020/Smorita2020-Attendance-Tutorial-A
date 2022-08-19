@@ -1,11 +1,12 @@
 class AttendancesController < ApplicationController
-  before_action :set_user, only: [:edit_one_month, :update_one_month]
-  before_action :logged_in_user, only: [:update, :edit_one_month]
+  before_action :set_user, only: [:edit_one_month, :update_one_month, :request_overtime_info]
+  before_action :logged_in_user, only: [:update, :edit_one_month, :request_overtime_info]
   before_action :admin_or_correct_user, only: [:update, :edit_one_month, :update_one_month]
-  before_action :set_one_month, only: :edit_one_month
+  before_action :set_one_month, only: [:edit_one_month, :request_overtime_info]
   
   UPDATE_ERROR_MSG = "勤怠登録に失敗しました。やり直してください。　"
   
+  # 出退勤ボタンの勤怠登録
   def update
     @user = User.find(params[:user_id])
     @attendance = Attendance.find(params[:id])
@@ -26,9 +27,11 @@ class AttendancesController < ApplicationController
     redirect_to @user
   end
   
+  # 勤怠編集ページ
   def edit_one_month
   end
   
+  # 社員による勤怠情報修正
   def update_one_month
     ActiveRecord::Base.transaction do
       attendances_params.each do |id, item|
@@ -43,9 +46,16 @@ class AttendancesController < ApplicationController
     redirect_to attendances_edit_one_month_user_url(date: params[:date])
   end
   
+  # 残業申請
+  def request_overtime_info
+    @user = User.find(params[:id])
+    # @attendance = Attendance.find(params[:attendance_id])
+    # @superiors = User.where(superior: true).where.not(id: @user.id)
+  end
+  
   # 1ヶ月分の勤怠申請
   def monthly_confirmation
-    @user = User.find(params[user_id])
+    @user = User.find(params[:user_id])
   end
   
   
