@@ -65,6 +65,13 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
   
+  def employee_at_work_list
+    @in_attendances = Attendance.where(worked_on: Date.current)
+                                 .where(finished_at: nil)
+                                 .where.not(started_at: nil)
+                                 .includes(:user)
+  end
+  
   # def request_overtime_info
     # @user = User.find(params[:id])
   # end
